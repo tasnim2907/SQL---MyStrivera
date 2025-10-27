@@ -1,0 +1,127 @@
+-- Q1: List all employees using an alias for the employees table.
+select * from employees as e
+
+-- Q2: Find all employees who are not in any department under the 'Health' division.
+select * from employees
+where department not in 
+(
+	select department from departments
+	where division = 'Health'
+)
+
+-- Q3: Show all employee details whose salary is above the average salary.
+select * from employees
+where salary > (select round(AVG(salary),2) from employees)
+
+-----------------------------------------------------------------------------------
+
+-- Q4: Show each employee's salary and the average salary of their department.
+select e1.first_name, e1.last_name, e1.department, e1.salary,
+(
+	select round(AVG(salary),2) 
+	from employees e2
+	where e1.department = e2.department
+) as avg_dept_salary
+from employees e1
+
+-- Q5: List employees who earn more than the average salary in their department.
+select first_name, last_name, department, salary,
+(
+	select round(avg(salary),2)
+	from employees e2
+	where e1.department = e2.department
+) as avg_dept_salary
+from employees e1
+
+where salary > 
+(
+	select round(avg(salary),2)
+	from employees e2
+	where e1.department = e2.department
+)
+
+-- Q5: (method 2) show all columns with showing avg_dept_salary
+SELECT * FROM employees e1
+WHERE salary > (
+    SELECT AVG(salary)
+    FROM employees e2
+    WHERE e2.department = e1.department
+	);
+
+-- Q6: List employees with salary greater than the minimum salary across all regions.
+
+SELECT * FROM employees
+WHERE salary > (SELECT MIN(salary) FROM employees);
+
+-----------------------------------------------------------------------------------
+
+-- Q7: Show names of employees who work in departments that belong to the 'Electronics' division.
+select first_name, last_name from employees
+where department in
+(	
+	select department from departments
+	where division = 'Electronics'
+)
+
+-- Q8: List employees who earn more than ALL employees in the 'Books' department.
+
+select * from employees
+where salary >
+(	select max(salary) from employees
+	where department = 'Books')
+
+-- Q8: (method 2) using ALL
+
+SELECT * FROM employees
+WHERE salary > ALL (
+    SELECT salary FROM employees WHERE department = 'Books'
+);
+
+-- Q9: List employees whose salary is greater than ANY employee from 'Tools' department.
+
+SELECT * FROM employees
+WHERE salary > ANY (
+    SELECT salary FROM employees WHERE department = 'Tools'
+);
+
+-----------------------------------------------------------------------------------
+
+-- Q10: Find departments where the average salary is higher than the average salary across all employees.
+
+SELECT *
+FROM (
+    SELECT department, AVG(salary) AS avg_dept_salary
+    FROM employees
+    GROUP BY department
+) AS dept_avg
+WHERE avg_dept_salary > (SELECT AVG(salary) FROM employees);
+
+-- Q11: List departments that have more than 5 employees.
+select department from employees
+group by department
+having count(employee_id) > 5
+
+-- Q12: List employees whose salary is the highest within their department (no JOIN).
+
+SELECT * FROM employees e1
+WHERE salary IN (
+    SELECT MAX(salary)
+    FROM employees e2
+    WHERE e2.department = e1.department
+	);
+
+-- Q13: Find regions with at least one employee earning above 150000.
+SELECT DISTINCT region_id FROM employees
+WHERE salary > 150000;
+
+-- Q14: Display employees who are working in departments that are not listed in the departments table.
+select * from employees
+where department not in (select department from departments)
+
+--- Q15: Find the employee(s) with the earliest hire date (without using ORDER BY or LIMIT).
+SELECT * FROM employees
+WHERE hire_date = (
+    SELECT MIN(hire_date) FROM employees
+);
+
+--------------------------------------- END -------------------------------------------
