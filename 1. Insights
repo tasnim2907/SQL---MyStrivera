@@ -1,0 +1,10 @@
+## The project is organized into several key areas of SQL learning.
+
+Questions 1 introduces the use of table aliases to make queries cleaner and easier to read.
+Questions 2 focuses on filtering data using subqueries, such as finding employees who are not part of a certain division.
+Questions 3 to 5 explore correlated subqueries, comparing individual salaries against the average salary within each department.
+Question 6 demonstrates scalar subqueries by comparing salaries to the overall minimum salary across all employees.
+Questions 7 to 9 use the IN, ANY, and ALL operators to filter employees based on divisions or salary comparisons.
+Questions 10 and 11 apply aggregate functions with the HAVING clause to evaluate department-level averages and employee counts.
+Question 12 identifies the highest-paid employees within each department, showing how to find groupwise maximum values.
+Finally, questions 13 to 15 present real-world use cases such as finding high-earning regions, detecting departments missing from the department list, and locating the employee with the earliest hire date.
