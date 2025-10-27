@@ -7,7 +7,7 @@ This repository includes SQL practice exercises completed as part of the MyStriv
 ## Key Features
 
 * Covers filtering, aggregation, and grouping using SQL.
-* Includes examples of subqueries, `IN`, `ANY`, `ALL`, and correlated subqueries.
+* Includes examples of subqueries, plus how to use `IN`, `ANY`, `ALL`, and correlated subqueries.
 * Focused on analytical and interview-style SQL problems.
 * Simple dataset to simulate real-world business queries.
 
@@ -32,6 +32,6 @@ This project highlights how to use SQL to analyze employee and departmental data
 
 ## Tools & Technologies
 
-* SQL (PostgreSQL / MySQL compatible)
+* SQL (works with PostgreSQL or MySQL)
 * DBeaver, SSMS, or pgAdmin
 * Git & GitHub
