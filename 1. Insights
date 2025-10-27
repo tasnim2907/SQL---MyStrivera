@@ -1,4 +1,4 @@
-## The project is organized into several key areas of SQL learning.
+The project is organized into several key areas of SQL learning.
 
 Questions 1 introduces the use of table aliases to make queries cleaner and easier to read.
 Questions 2 focuses on filtering data using subqueries, such as finding employees who are not part of a certain division.
